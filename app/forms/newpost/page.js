@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import CheckboxFive from "@/components/Checkboxes/CheckboxFive";
@@ -10,95 +10,84 @@ import SwitcherFour from "@/components/Switchers/SwitcherFour";
 import SwitcherOne from "@/components/Switchers/SwitcherOne";
 import SwitcherThree from "@/components/Switchers/SwitcherThree";
 import SwitcherTwo from "@/components/Switchers/SwitcherTwo";
-import React, { useEffect } from 'react'
-import Tiptap from '../../../components/Tiptap/Tiptap'
-import Preview from '../../../components/Previews/Preview'
-import PreviewPost from '../../../components/PreviewPost/PreviewPost'
-
-
-
+import React, { useEffect, useState } from 'react';
+import Tiptap from '../../../components/Tiptap/Tiptap';
+import Preview from '../../../components/Previews/Preview';
+import PreviewPost from '../../../components/PreviewPost/PreviewPost';
 import { Metadata } from "next";
 import TodayDateInput from "@/components/Date/Date";
-const metadata: Metadata = {
+
+const metadata = {
   title: "Form Elements Page | Next.js E-commerce Dashboard Template",
   description: "This is Form Elements page for TailAdmin Next.js",
   // other metadata
 };
 
 const FormElements = () => {
-
-  const [title, setTitle] = React.useState('first post');
-  const [category, setCategory] = React.useState('Gaming');
-  const [summary, setSummary] = React.useState('');
-  const [content, setContent] = React.useState({
+  const [title, setTitle] = useState('first post');
+  const [category, setCategory] = useState('Gaming');
+  const [summary, setSummary] = useState('');
+  const [content, setContent] = useState({
     content: ""
   });
-  const [Date, setDate] = React.useState('');
-  const [File, setFile] = React.useState('');
-  const [cover, setCover] = React.useState('');
-  const [Previews, setPreviews] = React.useState<string[]>([]);
-  const [audio, setAudio] = React.useState('');
-  const [audioPreviews, setAudioPreviews] = React.useState<string[]>([]);
-  const [previewPost, setPreviewPost] = React.useState(false);
-  const [warning, setWarning] = React.useState(false)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [Date, setDate] = useState('');
+  const [File, setFile] = useState('');
+  const [cover, setCover] = useState('');
+  const [Previews, setPreviews] = useState([]);
+  const [audio, setAudio] = useState('');
+  const [audioPreviews, setAudioPreviews] = useState([]);
+  const [previewPost, setPreviewPost] = useState(false);
+  const [warning, setWarning] = useState(false);
+
   useEffect(() => {
     if (File) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviews([...Previews, reader.result as string]);
-       
+        setPreviews([...Previews, reader.result]);
       };
       reader.readAsDataURL(File);
     }
   }, [File]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (audio) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAudioPreviews([...audioPreviews, reader.result as string]);
-       
+        setAudioPreviews([...audioPreviews, reader.result]);
       };
       reader.readAsDataURL(audio);
     }
   }, [audio]);
 
-
   const showPreview = () => {
-
-    if(title === '' || category === '' || summary === '' || content.content === '' || Previews.length === 0){
-      setWarning(true)
+    if (title === '' || category === '' || summary === '' || content.content === '' || Previews.length === 0) {
+      setWarning(true);
       setTimeout(() => {
-          setWarning(false)
-          }, 2000);
-    }else{
-      setPreviewPost(true)
+        setWarning(false);
+      }, 2000);
+    } else {
+      setPreviewPost(true);
     }
-    
-  }
+  };
 
-  
- 
-  if(previewPost){
-    return(
+  if (previewPost) {
+    return (
       <>
-      <Breadcrumb pageName="Preview" />
-        <PreviewPost 
-          title={title} 
-          category={category} 
+        <Breadcrumb pageName="Preview" />
+        <PreviewPost
+          title={title}
+          category={category}
           summary={summary}
-          Previews={Previews} 
+          Previews={Previews}
           cover={cover}
-          audioPreviews={audioPreviews} 
-          content={content} 
-          setPreviewPost={setPreviewPost} 
+          audioPreviews={audioPreviews}
+          content={content}
+          setPreviewPost={setPreviewPost}
           date={Date}
-          />
+        />
       </>
-    )
+    );
   }
-
 
   return (
     <>
@@ -120,7 +109,7 @@ const FormElements = () => {
                 </label>
                 <input
                   value={title}
-                  onChange={(ev)=>{setTitle(ev.target.value)}}
+                  onChange={(ev) => { setTitle(ev.target.value) }}
                   type="text"
                   placeholder="Title should be catchy as in advertisements!"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -133,41 +122,14 @@ const FormElements = () => {
                 </label>
                 <input
                   value={category}
-                  onChange={(ev)=>{setCategory(ev.target.value)}}
+                  onChange={(ev) => { setCategory(ev.target.value) }}
                   type="text"
                   placeholder="Select the category which your post belongs to."
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input"
                 />
               </div>
-
-              {/* <div>
-                <label className="mb-3 block font-medium text-black dark:text-white">
-                  disabled
-                </label>
-                <input
-                  type="text"
-                  placeholder="Disabled label"
-                  disabled
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black"
-                />
-              </div> */}
             </div>
           </div>
-
-          {/* <!-- Toggle switch input --> */}
-          {/* <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Toggle switch input
-              </h3>
-            </div>
-            <div className="flex flex-col gap-5.5 p-6.5">
-              <SwitcherOne />
-              <SwitcherTwo />
-              <SwitcherThree />
-              <SwitcherFour />
-            </div>
-          </div> */}
 
           {/* <!-- Time and date --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -185,18 +147,6 @@ const FormElements = () => {
                   <TodayDateInput date={Date} setDate={setDate} />
                 </div>
               </div>
-
-              {/* <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Select date
-                </label>
-                <div className="relative">
-                  <input
-                    type="date"
-                    className="custom-input-date custom-input-date-2 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
-                </div>
-              </div> */}
             </div>
           </div>
 
@@ -217,10 +167,9 @@ const FormElements = () => {
                   className="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
                   accept='image/*,video/mp4'
                   onChange={(e) => {
-                    setCover(e.target.files[0])
+                    setCover(e.target.files[0]);
                     const files = e.target.files;
                     if (files && files.length > 0) {
-                    
                       for (let i = 0; i < files.length; i++) {
                         const file = files[i];
                         if (file.type.startsWith('image') || file.type === 'video/mp4') {
@@ -243,7 +192,6 @@ const FormElements = () => {
                   onChange={(e) => {
                     const files = e.target.files;
                     if (files && files.length > 0) {
-                     
                       for (let i = 0; i < files.length; i++) {
                         const file = files[i];
                         if (file.type.startsWith('audio')) {
@@ -273,7 +221,7 @@ const FormElements = () => {
                 </label>
                 <textarea
                   value={summary}
-                  onChange={(e)=>{setSummary(e.target.value)}}
+                  onChange={(e) => { setSummary(e.target.value) }}
                   rows={6}
                   placeholder="summaries should be short and must convey the subject of the post."
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -283,39 +231,11 @@ const FormElements = () => {
               <div>
                 <label className="mb-3 block text-black dark:text-white">
                   Post content
-                </label> 
-               <Tiptap content={content} setContent={setContent} />
-              </div>
-
-              {/* <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Disabled textarea
                 </label>
-                <textarea
-                  rows={6}
-                  disabled
-                  placeholder="Disabled textarea"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:disabled:bg-black"
-                ></textarea>
-              </div> */}
+                <Tiptap content={content} setContent={setContent} />
+              </div>
             </div>
           </div>
-
-          {/* <!-- Checkbox and radio --> */}
-          {/* <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">
-                Checkbox and radio
-              </h3>
-            </div>
-            <div className="flex flex-col gap-5.5 p-6.5">
-              <CheckboxOne />
-              <CheckboxTwo />
-              <CheckboxThree />
-              <CheckboxFour />
-              <CheckboxFive />
-            </div>
-          </div> */}
 
           {/* <!-- Select input --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -340,19 +260,18 @@ const FormElements = () => {
                 <div className="relative z-20 bg-white dark:bg-form-input">
                   <div className="grid gap-4">
                     {audioPreviews.length > 0 &&
-                      audioPreviews.map((media,index)=>(
+                      audioPreviews.map((media, index) => (
                         <div key={index.toString()} className="ms-2 mb-2">
                           {media && media.includes('audio/') &&
                             <div className="audio">
-                            <audio className="w-full " controls>
-                            <source
-                            src={media}
-                            className="cursor-pointer"
-                            alt={`Preview ${index}`}
-                        /> </audio>
-                          
-                        </div>   
-                                               
+                              <audio className="w-full " controls>
+                                <source
+                                  src={media}
+                                  className="cursor-pointer"
+                                  alt={`Preview ${index}`}
+                                />
+                              </audio>
+                            </div>
                           }
                         </div>
                       ))
