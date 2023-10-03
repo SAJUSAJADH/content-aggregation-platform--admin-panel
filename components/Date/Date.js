@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 const TodayDateInput = ({ date, setDate }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const dateInput = document.getElementById('todayDateInput');
 
