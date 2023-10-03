@@ -19,7 +19,7 @@ import PreviewPost from '../../../components/PreviewPost/PreviewPost'
 
 import { Metadata } from "next";
 import TodayDateInput from "@/components/Date/Date";
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Form Elements Page | Next.js E-commerce Dashboard Template",
   description: "This is Form Elements page for TailAdmin Next.js",
   // other metadata

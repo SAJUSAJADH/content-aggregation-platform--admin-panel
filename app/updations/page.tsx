@@ -7,8 +7,8 @@ import {useState , useEffect} from 'react'
 import { Metadata } from "next";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-export const metadata: Metadata = {
-  title: "Profile Page | Next.js E-commerce Dashboard Template",
+const metadata: Metadata = {
+  title: "Updation Page | Next.js E-commerce Dashboard Template",
   description: "This is Profile page for TailAdmin Next.js",
   // other metadata
 };
