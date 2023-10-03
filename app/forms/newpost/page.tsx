@@ -36,9 +36,9 @@ const FormElements = () => {
   const [Date, setDate] = React.useState('');
   const [File, setFile] = React.useState('');
   const [cover, setCover] = React.useState('');
-  const [Previews, setPreviews] = React.useState([]);
+  const [Previews, setPreviews] = React.useState<string[]>([]);
   const [audio, setAudio] = React.useState('');
-  const [audioPreviews, setAudioPreviews] = React.useState([]);
+  const [audioPreviews, setAudioPreviews] = React.useState<string[]>([]);
   const [previewPost, setPreviewPost] = React.useState(false);
   const [warning, setWarning] = React.useState(false)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,7 +46,7 @@ const FormElements = () => {
     if (File) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviews([...Previews, reader.result]);
+        setPreviews([...Previews, reader.result as string]);
        
       };
       reader.readAsDataURL(File);
@@ -57,7 +57,7 @@ const FormElements = () => {
     if (audio) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAudioPreviews([...audioPreviews, reader.result]);
+        setAudioPreviews([...audioPreviews, reader.result as string]);
        
       };
       reader.readAsDataURL(audio);
