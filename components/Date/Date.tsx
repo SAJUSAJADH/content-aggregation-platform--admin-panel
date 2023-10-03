@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 const TodayDateInput: React.FC = ({date, setDate}) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Get a reference to the input element
     const dateInput = document.getElementById('todayDateInput') as HTMLInputElement;

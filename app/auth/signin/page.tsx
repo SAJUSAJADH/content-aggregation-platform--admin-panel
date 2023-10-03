@@ -23,7 +23,7 @@ const SignIn: React.FC = () => {
   const [loading, setLoading] = useState(false)
 
 
-  const Submit = async (ev) => {
+  const Submit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     setLoading(true)
     

@@ -41,7 +41,7 @@ const FormElements = () => {
   const [audioPreviews, setAudioPreviews] = React.useState([]);
   const [previewPost, setPreviewPost] = React.useState(false);
   const [warning, setWarning] = React.useState(false)
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (File) {
       const reader = new FileReader();
@@ -52,7 +52,7 @@ const FormElements = () => {
       reader.readAsDataURL(File);
     }
   }, [File]);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (audio) {
       const reader = new FileReader();

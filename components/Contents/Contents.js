@@ -39,6 +39,7 @@ export default function Contents(){
                         <div className="flex">               
                                 <img
                                 src={item.source}
+                                alt=""
                                 className="rounded cursor-pointer w-28 h-16"
                                 onError={(e) => {
                                     e.target.src = "https://tuberanker.com/storage/images/data/can-i-use-someone-elses-video-on-my-youtube-channel.png"
